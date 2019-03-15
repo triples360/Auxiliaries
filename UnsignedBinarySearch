@@ -1,0 +1,33 @@
+/*
+Input  : unsigned arr, must be sorted with bounds from 0 to b (or a to b);
+         unsigned a
+         unsigned b
+         unsigned key
+Output : returns true if key is present within bounds a to b, else returns false;
+*/
+#include<iostream>
+using namespace std;
+
+bool binarySearch(unsigned *arr, unsigned a, unsigned b, unsigned key) {
+    cout<<"a = "<<a<<" b = "<<b<<endl;
+  if (a > b)
+    return false;
+  if (a == b) {
+    if (arr[a] == key)
+      return true;
+    else
+      return false;
+  }
+  unsigned mid = (a + b) / 2;
+  if (arr[mid] == key)
+    return true;
+  if (arr[mid] > key) {
+    if (mid == 0) {
+      return false;
+    }
+    return binarySearch(arr, a, mid - 1, key);
+  } else {
+    return binarySearch(arr, mid + 1, b, key);
+  }
+}
+
