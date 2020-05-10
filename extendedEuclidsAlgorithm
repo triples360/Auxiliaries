@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+typedef long long int ulli;
+
+ulli*eea(ulli a,ulli b)
+{
+    if(b==0)
+    {
+        ulli*res=new ulli[3];
+        res[0]=a;
+        res[1]=1;
+        res[2]=0;
+        return res;
+    }
+    ulli*res=eea(b,a%b);
+    ulli tmp;
+    tmp=res[2];
+    res[2]=res[1]-(a/b)*res[2];
+    res[1]=tmp;
+    return res;
+}
+
+int main()
+{
+  ulli a,b;
+  cin>>a>>b;
+  ulli*res;
+  res=eea(a,b);
+  for(int i=0;i<3;i++)
+  {
+      cout<<res[i]<<endl;
+  }
+  return 0;
+}
